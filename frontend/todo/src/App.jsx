@@ -4,7 +4,7 @@ import HeaderText from "./components/HeaderText";
 function App() {
   return (
     <>
-      <HeaderText/>
+      <HeaderText />
     </>
   );
 }

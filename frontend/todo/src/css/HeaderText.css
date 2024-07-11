@@ -1,0 +1,37 @@
+.HeaderText {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 4em;
+  font-weight: 700;
+  gap: 28px;
+}
+
+.TextDO,
+.TextTO{
+      text-shadow: 3px 4px 4px rgba(62, 59, 59, 0.767);
+}
+
+/* TO */
+
+.TextTO{
+      color: #67d6b5;
+      transition: color 200ms;
+}
+
+.TextTO:hover{
+      color: #78dabdc7;
+      cursor: pointer;
+}
+
+/* DO */
+
+.TextDO{
+      color: #707EA4;
+      transition: color 200ms;
+}
+
+.TextDO:hover{
+      color: #99aada;
+      cursor: pointer;
+}
