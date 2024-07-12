@@ -16,7 +16,7 @@
 
 .TextTO{
       color: #67d6b5;
-      transition: color 200ms;
+      transition: color 400ms;
 }
 
 .TextTO:hover{
@@ -28,7 +28,7 @@
 
 .TextDO{
       color: #707EA4;
-      transition: color 200ms;
+      transition: color 400ms;
 }
 
 .TextDO:hover{

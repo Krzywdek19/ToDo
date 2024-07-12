@@ -1,7 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function RegisterForm() {
-  return <></>;
+  return (<div>
+    
+  </div>);
 }
 
 export default RegisterForm;
