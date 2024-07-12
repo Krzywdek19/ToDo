@@ -1,7 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/LoginForm.css";
+import { useState } from "react";
 
 function LoginForm() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`The name is ${username}, password ${password}`)
+  }
+
   return (
     <div className="loginForm">
       <div className="card">
@@ -21,11 +30,10 @@ function LoginForm() {
           </div>
           <hr className="headerLine"></hr>
           {/* Form */}
-          <form className="formLogin pt-4">
+          <form className="formLogin pt-4" onSubmit={handleSubmit}>
             {/* ------ USERNAME ------ */}
             <div className="formUsername py-5">
               <label
-                htmlFor="username"
                 className="usernameText fs-4 fw-semibold"
               >
                 Username:
@@ -33,8 +41,8 @@ function LoginForm() {
               <br />
               <input
                 type="text"
-                id="username"
-                name="username"
+                value={username}
+                onChange={(e) => {setUsername(e.target.value)}}
                 placeholder="Enter your username"
                 className="formInput"
               ></input>
@@ -42,7 +50,6 @@ function LoginForm() {
             {/* ------ PASSWORD ------ */}
             <div className="formPassword">
               <label
-                htmlFor="password"
                 className="passwordText fs-4 fw-semibold"
               >
                 Password:
@@ -50,8 +57,8 @@ function LoginForm() {
               <br />
               <input
                 type="password"
-                id="password"
-                name="password"
+                value={password}
+                onChange={(e) => {setPassword(e.target.value)}}
                 placeholder="Enter your password"
                 className="formInput"
               ></input>
