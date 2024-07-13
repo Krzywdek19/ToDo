@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/LoginForm.css";
+import "../css/FlexForm.css";
 import { useState } from "react";
 
 function LoginForm() {
@@ -8,12 +9,13 @@ function LoginForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    /* SENT TO THE SERVER!!!!! */
     alert(`The name is ${username}, password ${password}`)
   }
 
   return (
     <div className="loginForm">
-      <div className="card">
+      <div className="card cardLogin">
         <div className="card-body">
           <div className="bodyHeader">
             <svg

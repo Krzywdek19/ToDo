@@ -113,8 +113,8 @@ body {
   background-color: rgba(232, 247, 255, 1);
   background-image: linear-gradient(
     90deg,
-    rgba(232, 247, 255, 1) 50%,
-    rgba(255, 254, 242, 1) 50%
+    rgb(222, 242, 253) 50%,
+    rgb(176, 205, 241) 50%
   );
 }
 ol,

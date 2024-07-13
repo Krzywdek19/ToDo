@@ -8,7 +8,7 @@ function App() {
     <>
       <HeaderText />
       <LoginForm />
-      <RegisterForm/>
+      <RegisterForm />
     </>
   );
 }

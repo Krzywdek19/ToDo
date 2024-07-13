@@ -1,12 +1,17 @@
-/* Card */
+/* Card LOGIN */
 
-.card {
+.loginForm{
+  float: left;
+  width: 950px;
+}
+
+.cardLogin {
   max-width: 100%;
   max-height: auto;
   height: 630px;
   width: 450px;
-  margin-top: 80px;
-  margin-left: 150px;
+  margin-top: 120px;
+  margin-left: 280px;
   border-radius: 22px;
   border: none;
   -webkit-box-shadow: 0px 0px 16px -2px rgba(103, 214, 181, 1);
@@ -17,7 +22,7 @@
 }
 
 .card:hover {
-  background-color: rgb(245, 253, 251);
+  background-color: rgb(248, 255, 254);
 }
 
 /* Header */
@@ -86,6 +91,7 @@
 
 .loginBtn:active{
       background-color: #aae4cdaf;
+      color: white;
 }
 
 /* Inputs */
@@ -109,6 +115,6 @@
   border-color: #5eaa8daf;
 }
 
-.formInput:active {
+.formInput:focus {
   border-color: #5eaa8daf;
 }
