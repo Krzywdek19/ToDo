@@ -9,7 +9,7 @@
 
 .TextDO,
 .TextTO{
-      text-shadow: 3px 4px 4px rgba(62, 59, 59, 0.767);
+      text-shadow: 3px 4px 4px rgba(35, 39, 23, 0.726);
 }
 
 /* TO */
@@ -20,18 +20,18 @@
 }
 
 .TextTO:hover{
-      color: #78dabdc7;
+      color: #8ef7d79c;
       cursor: pointer;
 }
 
 /* DO */
 
 .TextDO{
-      color: #707EA4;
+      color: #6b62f1;
       transition: color 400ms;
 }
 
 .TextDO:hover{
-      color: #99aada;
+      color: #b5a8fcbd;
       cursor: pointer;
 }

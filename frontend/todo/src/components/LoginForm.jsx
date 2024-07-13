@@ -1,13 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/LoginForm.css";
-import "../css/FlexForm.css";
 import { useState } from "react";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmitLogin = (event) => {
     event.preventDefault();
     /* SENT TO THE SERVER!!!!! */
     alert(`The name is ${username}, password ${password}`)
@@ -32,11 +31,11 @@ function LoginForm() {
           </div>
           <hr className="headerLine"></hr>
           {/* Form */}
-          <form className="formLogin pt-4" onSubmit={handleSubmit}>
+          <form className="formLogin pt-4" onSubmit={handleSubmitLogin}>
             {/* ------ USERNAME ------ */}
-            <div className="formUsername py-5">
+            <div className="formUsernameLogin py-5">
               <label
-                className="usernameText fs-4 fw-semibold"
+                className="usernameTextLogin fs-4 fw-semibold"
               >
                 Username:
               </label>
@@ -46,13 +45,13 @@ function LoginForm() {
                 value={username}
                 onChange={(e) => {setUsername(e.target.value)}}
                 placeholder="Enter your username"
-                className="formInput"
+                className="formInputLogin"
               ></input>
             </div>
             {/* ------ PASSWORD ------ */}
-            <div className="formPassword">
+            <div className="formPasswordLogin">
               <label
-                className="passwordText fs-4 fw-semibold"
+                className="passwordTextLogin fs-4 fw-semibold"
               >
                 Password:
               </label>
@@ -62,7 +61,7 @@ function LoginForm() {
                 value={password}
                 onChange={(e) => {setPassword(e.target.value)}}
                 placeholder="Enter your password"
-                className="formInput"
+                className="formInputLogin"
               ></input>
             </div>
             <div className="formBtnLogin">

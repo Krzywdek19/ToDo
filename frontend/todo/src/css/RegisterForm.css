@@ -19,5 +19,90 @@
   -moz-box-shadow: 0px 0px 16px -2px rgba(82, 61, 142, 1);
   box-shadow: 0px 0px 16px -2px rgba(82, 61, 142, 280);
   background-color: #fff;
-  transition: background-color 200ms;
+  transition: background-color 400ms;
+}
+
+.cardRegister:hover {
+  background-color: rgb(245, 235, 255);
+}
+
+/* Header */
+
+.bodyHeader {
+  display: flex;
+  justify-content: Center;
+  margin-top: 16px;
+  gap: 12px;
+}
+
+.registerHeader {
+  font-size: 48px;
+  font-weight: 700;
+  color: #595959;
+  text-shadow: 3px 3px 0px #9576eb;
+}
+
+/* Form */
+
+/* Text */
+
+.usernameTextRegister,
+.passwordTextRegister {
+  color: #595959;
+  text-shadow: 2px 2px 0px #9791f5fb;
+}
+
+/* To make center everything */
+.formUsernameRegister,
+.formPasswordRegister,
+.formBtnRegister {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Inputs */
+.formInputRegister {
+  max-width: 100%;
+  max-height: auto;
+  width: 250px;
+  height: 40px;
+  border-radius: 8px;
+  border-color: rgba(149, 118, 235, 1);
+  font-size: 18px;
+  -webkit-box-shadow: 0px 0px 16px -2px rgba(149, 118, 235, 1);
+  -moz-box-shadow: 0px 0px 16px -2px rgba(149, 118, 235, 1);
+  box-shadow: 0px 0px 16px -2px rgba(149, 118, 235, 1);
+  border-style: solid;
+  transition: background-color 10000ms, border-color 400ms;
+}
+
+.formInputRegister:hover {
+  background-color: rgb(240, 229, 253);
+  border-color: rgb(190, 174, 233);
+}
+
+/* Button to submit Register */
+.registerBtn {
+  max-width: 100%;
+  max-height: auto;
+  width: 142px;
+  height: 48px;
+  margin-top: 84px;
+  background-color: white;
+  border-style: solid;
+  border-radius: 12px;
+  border-color: rgba(149, 118, 235, 1);
+  color: #595959;
+  transition: background-color 200ms, color 200ms;
+}
+
+.registerBtn:hover{
+  background-color: rgb(177, 155, 240);
+  color: white;
+}
+
+.registerBtn:active{
+  background-color: rgb(203, 191, 235);
+  color: white;
 }
