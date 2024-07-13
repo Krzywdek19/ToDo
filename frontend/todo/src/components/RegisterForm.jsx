@@ -37,6 +37,7 @@ function RegisterForm() {
               <label className="usernameTextRegister fs-4 fw-semibold">
                 Username:
               </label>
+              <br />
               <input
                 type="text"
                 value={username}
