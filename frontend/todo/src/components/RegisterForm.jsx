@@ -1,16 +1,22 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/RegisterForm.css";
 import { useState } from "react";
+import axios from "../api/axios";
 
 function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmitRegister = (event) => {
-    event.preventDefault();
-    /* SENT TO THE SERVER!!!!! */
-    alert(`The name is ${username}, password ${password}`);
-  };
+   const handleSubmitRegister = async (event) => {
+     event.preventDefault();
+     try {
+       const response = await axios.post("/register", { username, password });
+       alert(`User registered: ${response.data.username}`);
+     } catch (err) {
+       console.error(err);
+       alert("Registration failed");
+     }
+   };
 
   return (
     <div className="registerForm">
