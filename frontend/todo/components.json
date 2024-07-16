@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": true,
+  "tsx": false,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "C:\\Users\\matie\\OneDrive\\Pulpit\\Projects\\ToDo\\frontend\\todo\\src\\css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "C:\\Users\\matie\\OneDrive\\Pulpit\\Projects\\ToDo\\frontend\\todo\\src\\components",
+    "utils": "@/lib/utils",
+    "ui": "C:\\Users\\matie\\OneDrive\\Pulpit\\Projects\\ToDo\\frontend\\todo\\src\\components/ui",
+    "magicui": "C:\\Users\\matie\\OneDrive\\Pulpit\\Projects\\ToDo\\frontend\\todo\\src\\components/magicui"
+  }
+}
