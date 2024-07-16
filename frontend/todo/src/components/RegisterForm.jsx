@@ -1,22 +1,82 @@
+/* eslint-disable no-unused-vars */
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/RegisterForm.css";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import {
+  faCheck,
+  faTimes,
+  faInfoCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
 
-function RegisterForm() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
-   const handleSubmitRegister = async (event) => {
-     event.preventDefault();
-     try {
-       const response = await axios.post("/register", { username, password });
-       alert(`User registered: ${response.data.username}`);
-     } catch (err) {
-       console.error(err);
-       alert("Registration failed");
-     }
-   };
+const RegisterForm = () => {
+  const userRef = useRef();
+  const errRef = useRef();
+
+  /* User */
+  const [user, setUser] = useState("");
+  const [validName, setValidName] = useState(false);
+  const [userFocus, setUserFocus] = useState(false);
+
+  /* Password */
+  const [pwd, setPwd] = useState("");
+  const [validPwd, setValidPwd] = useState(false);
+  const [pwdFocus, setPwdFocus] = useState(false);
+
+  /* Matching */
+  const [matchPwd, setMatchPwd] = useState("");
+  const [validMatch, setValidMatch] = useState(false);
+  const [matchFocus, setMatchFocus] = useState(false);
+
+  /* Error / Success */
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  /* ----- Hooks ----- */
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
+  /* User Hook */
+  useEffect(() => {
+    const result = USER_REGEX.test(user);
+    console.log(result);
+    console.log(user);
+    setValidName(result);
+  }, [user]);
+
+  /* Pwd Hook */
+  useEffect(() => {
+    const result = PWD_REGEX.test(pwd);
+    console.log(result);
+    console.log(pwd);
+    setValidPwd(result);
+    const match = pwd === matchPwd;
+    setValidMatch(match);
+  }, [pwd, matchPwd]);
+
+  /* Error */
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, pwd, matchPwd]);
+
+  /* ----------- */
+  /* const handleSubmitRegister = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("/register", {
+        username: user,
+        password: pwd,
+      });
+      alert(`User registered: ${response.data.username}`);
+    } catch (err) {
+      console.error(err);
+      alert("Registration failed");
+    }
+  }; */
 
   return (
     <div className="registerForm">
@@ -37,51 +97,124 @@ function RegisterForm() {
           </div>
           <hr className="headerLine"></hr>
           {/* Form */}
-          <form className="formRegister pt-4" onSubmit={handleSubmitRegister}>
-            {/* ------ USERNAME ------*/}
-            <div className="formUsernameRegister py-5">
-              <label className="usernameTextRegister fs-4 fw-semibold">
-                Username:
-              </label>
-              <br />
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => {
-                  setUsername(e.target.value);
-                }}
-                placeholder="Enter your username"
-                className="formInputRegister"
-              ></input>
-            </div>
-            {/* ------ PASSWORD ------ */}
-            <div className="formPasswordRegister">
-              <label className="passwordTextRegister fs-4 fw-semibold">
-                Password:
-              </label>
-              <br />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                placeholder="Enter your password"
-                className="formInputRegister"
-              ></input>
-            </div>
-            <div className="formBtnRegister">
-              <input
-                type="submit"
-                value="Register"
-                className="registerBtn fw-semibold"
-              ></input>
-            </div>
-          </form>
+          <section>
+            <p
+              ref={errRef}
+              className={errMsg ? "errmsg" : "offscreen"}
+              aria-live="assertive"
+            >
+              {errMsg}
+            </p>
+
+            <form
+              className="formRegister pt-4" /* onSubmit={handleSubmitRegister} */
+            >
+              {/* ------ USERNAME ------*/}
+              <div className="formUsernameRegister py-2">
+                <label
+                  className="usernameTextRegister fs-4 fw-semibold"
+                  htmlFor="username"
+                >
+                  Username:
+                  <span className={validName ? "valid" : "hide"}>
+                    <FontAwesomeIcon icon={faCheck} />
+                  </span>
+                  <span className={validName || !user ? "hide" : "invalid"}>
+                    <FontAwesomeIcon icon={faTimes} />
+                  </span>
+                </label>
+                <br />
+                <input
+                  type="text"
+                  id="username"
+                  ref={userRef}
+                  autoComplete="off"
+                  required
+                  aria-invalid={validName ? "false" : "true"}
+                  aria-describedby="uidnote"
+                  onChange={(e) => setUser(e.target.value)}
+                  placeholder="Enter your username"
+                  className="formInputRegister"
+                  onFocus={() => setUserFocus(true)}
+                  onBlur={() => setUserFocus(false)}
+                />
+                {/* Checks, if the username is valid with REGEX and giving instructions*/}
+                <p
+                  id="uidnote"
+                  className={
+                    userFocus && !validName && user
+                      ? "instructions"
+                      : "offscreen"
+                  }
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  4 to 24 character.
+                  <br />
+                  Must begin with a letter.
+                  <br />
+                  Letters, numbers, underscores, hyphens allowed.
+                </p>
+              </div>
+              {/* ------ PASSWORD ------ */}
+              <div className="formPasswordRegister">
+                <label
+                  className="passwordTextRegister fs-4 fw-semibold"
+                  htmlFor="password"
+                >
+                  Password:
+                  <span className={validPwd ? "valid" : "hide"}>
+                    <FontAwesomeIcon icon={faCheck} />
+                  </span>
+                  <span className={validPwd || !pwd ? "hide" : "invalid"}>
+                    <FontAwesomeIcon icon={faTimes} />
+                  </span>
+                </label>
+                <br />
+                <input
+                  type="password"
+                  id="password"
+                  required
+                  aria-invalid={validPwd ? "false" : "true"}
+                  aria-describedby="pwdnote"
+                  onFocus={() => setPwdFocus(true)}
+                  onBlur={() => setPwdFocus(false)}
+                  onChange={(e) => setPwd(e.target.value)}
+                  placeholder="Enter your password"
+                  className="formInputRegister"
+                />
+                <p
+                  id="pwdnote"
+                  className={
+                    pwdFocus && !validPwd ? "instructions" : "offscreen"
+                  }
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  8 to 24 character.
+                  <br />
+                  Must include uppercase and lowercase letters, a numer and a
+                  special character.
+                  <br />
+                  Allowed special characters:{" "}
+                  <span aria-label="exclamation mark">!</span>
+                  <span aria-label="at symbol">@</span>{" "}
+                  <span aria-label="hashtag">#</span>
+                  <span aria-label="percent">%</span>
+                </p>
+              </div>
+              {/* SUBMIT */}
+              <div className="formBtnRegister">
+                <input
+                  type="submit"
+                  value="Register"
+                  className="registerBtn fw-semibold"
+                ></input>
+              </div>
+            </form>
+          </section>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default RegisterForm;
