@@ -107,7 +107,7 @@ const RegisterForm = () => {
             </p>
 
             <form
-              className="formRegister pt-4" /* onSubmit={handleSubmitRegister} */
+              className="formRegister pt-2" /* onSubmit={handleSubmitRegister} */
             >
               {/* ------ USERNAME ------*/}
               <div className="formUsernameRegister py-2">
@@ -115,7 +115,7 @@ const RegisterForm = () => {
                   className="usernameTextRegister fs-4 fw-semibold"
                   htmlFor="username"
                 >
-                  Username:
+                  Username: &nbsp;
                   <span className={validName ? "valid" : "hide"}>
                     <FontAwesomeIcon icon={faCheck} />
                   </span>
@@ -148,7 +148,7 @@ const RegisterForm = () => {
                   }
                 >
                   <FontAwesomeIcon icon={faInfoCircle} />
-                  4 to 24 character.
+                  &nbsp;4 to 24 character.
                   <br />
                   Must begin with a letter.
                   <br />
@@ -161,7 +161,7 @@ const RegisterForm = () => {
                   className="passwordTextRegister fs-4 fw-semibold"
                   htmlFor="password"
                 >
-                  Password:
+                  Password:&nbsp;
                   <span className={validPwd ? "valid" : "hide"}>
                     <FontAwesomeIcon icon={faCheck} />
                   </span>
@@ -189,16 +189,53 @@ const RegisterForm = () => {
                   }
                 >
                   <FontAwesomeIcon icon={faInfoCircle} />
-                  8 to 24 character.
+                  &nbsp;8 to 24 character.
                   <br />
-                  Must include uppercase and lowercase letters, a numer and a
-                  special character.
+                  Must include uppercase and lowercase letters,
+                  <br /> a numer and a special character.
                   <br />
                   Allowed special characters:{" "}
                   <span aria-label="exclamation mark">!</span>
                   <span aria-label="at symbol">@</span>{" "}
                   <span aria-label="hashtag">#</span>
                   <span aria-label="percent">%</span>
+                </p>
+              </div>
+              {/* ------ CONFIRM PASSWORD ------ */}
+              <div className="formPasswordRegister">
+                <label
+                  className="passwordTextRegister fs-4 fw-semibold"
+                  htmlFor="confirm-password"
+                >
+                  Confirm Password:&nbsp;
+                  <span className={validPwd && matchPwd ? "valid" : "hide"}>
+                    <FontAwesomeIcon icon={faCheck} />
+                  </span>
+                  <span className={validPwd || !matchPwd ? "hide" : "invalid"}>
+                    <FontAwesomeIcon icon={faTimes} />
+                  </span>
+                </label>
+                <br />
+                <input
+                  type="password"
+                  id="confirm-password"
+                  required
+                  aria-invalid={validMatch ? "false" : "true"}
+                  aria-describedby="confirmnote"
+                  onFocus={() => setMatchFocus(true)}
+                  onBlur={() => setMatchFocus(false)}
+                  onChange={(e) => setMatchPwd(e.target.value)}
+                  placeholder="Enter your password"
+                  className="formInputRegister"
+                />
+                <p
+                  id="confirmnote"
+                  className={
+                    matchFocus && !validMatch ? "instructions" : "offscreen"
+                  }
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  &nbsp;Must match the first password input field.
                 </p>
               </div>
               {/* SUBMIT */}
