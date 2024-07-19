@@ -205,20 +205,20 @@ const RegisterForm = () => {
               <div className="formPasswordRegister">
                 <label
                   className="passwordTextRegister fs-4 fw-semibold"
-                  htmlFor="confirm-password"
+                  htmlFor="confirm_pwd"
                 >
                   Confirm Password:&nbsp;
-                  <span className={validPwd && matchPwd ? "valid" : "hide"}>
+                  <span className={validMatch && matchPwd ? "valid" : "hide"}>
                     <FontAwesomeIcon icon={faCheck} />
                   </span>
-                  <span className={validPwd || !matchPwd ? "hide" : "invalid"}>
+                  <span className={validMatch || !matchPwd ? "hide" : "invalid"}>
                     <FontAwesomeIcon icon={faTimes} />
                   </span>
                 </label>
                 <br />
                 <input
                   type="password"
-                  id="confirm-password"
+                  id="confirm_pwd"
                   required
                   aria-invalid={validMatch ? "false" : "true"}
                   aria-describedby="confirmnote"
