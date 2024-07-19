@@ -64,19 +64,19 @@ const RegisterForm = () => {
   }, [user, pwd, matchPwd]);
 
   /* ----------- */
-  /* const handleSubmitRegister = async (event) => {
+  const handleSubmitRegister = async (event) => {
     event.preventDefault();
-    try {
-      const response = await axios.post("/register", {
-        username: user,
-        password: pwd,
-      });
-      alert(`User registered: ${response.data.username}`);
-    } catch (err) {
-      console.error(err);
-      alert("Registration failed");
+    const v1 = USER_REGEX.test(user);
+    const v2 = PWD_REGEX.test(pwd);
+    if (!v1 || !v2) {
+      setErrMsg("Invalid Entry!");
+      return;
     }
-  }; */
+    console.log(user, pwd);
+    setSuccess(true);
+  };
+
+
 
   return (
     <div className="registerForm">
@@ -107,7 +107,7 @@ const RegisterForm = () => {
             </p>
 
             <form
-              className="formRegister pt-2" /* onSubmit={handleSubmitRegister} */
+              className="formRegister pt-2" onSubmit={handleSubmitRegister}
             >
               {/* ------ USERNAME ------*/}
               <div className="formUsernameRegister py-2">
@@ -211,7 +211,9 @@ const RegisterForm = () => {
                   <span className={validMatch && matchPwd ? "valid" : "hide"}>
                     <FontAwesomeIcon icon={faCheck} />
                   </span>
-                  <span className={validMatch || !matchPwd ? "hide" : "invalid"}>
+                  <span
+                    className={validMatch || !matchPwd ? "hide" : "invalid"}
+                  >
                     <FontAwesomeIcon icon={faTimes} />
                   </span>
                 </label>
@@ -240,11 +242,7 @@ const RegisterForm = () => {
               </div>
               {/* SUBMIT */}
               <div className="formBtnRegister">
-                <input
-                  type="submit"
-                  value="Register"
-                  className="registerBtn fw-semibold"
-                ></input>
+                <button className="registerBtn fw-semibold" disabled={!validName || !validPwd || !validMatch ? true : false}>Sign up</button>
               </div>
             </form>
           </section>

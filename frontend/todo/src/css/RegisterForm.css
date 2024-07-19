@@ -96,6 +96,12 @@
   border-color: rgba(149, 118, 235, 1);
   color: #595959;
   transition: background-color 200ms, color 200ms;
+  cursor: pointer;
+}
+
+.registerBtn:disabled {
+  cursor: default;
+  background-color: white;
 }
 
 .registerBtn:hover {
